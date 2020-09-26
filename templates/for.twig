@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% for person in people %}
+    <ul>
+    <li>{{person.name}}</li>
+    <li>{{person.age}}</li>
+    <li>{{person.country}}</li>
+    </ul>
+{% endfor %}
+{% endblock %}

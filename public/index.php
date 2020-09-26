@@ -18,7 +18,18 @@ $app->addErrorMiddleware(true, false, false);
 
 // Add route callbacks
 $app->get('/', function (Request $request, Response $response, array $args) use($twig){
-    $response->getBody()->write($twig->render('index.twig',['name' => 'Diego']));
+    $response->getBody()->write($twig->render('index.twig',['title' => 'index', 'name' => 'Diego']));
+    return $response;
+});
+
+$app->get('/child', function (Request $request, Response $response, array $args) use($twig){
+    $response->getBody()->write($twig->render('index.twig',['title' => 'child', 'name' => 'Child']));
+    return $response;
+});
+
+$app->get('/nested', function (Request $request, Response $response, array $args) use($twig){
+    $array = [0 => ['name' => 'Diego', 'age' => 24, 'country' => 'Argentina'], 1 => ['name' => 'Pablo', 'age' => 21, 'country' => 'Italia']];
+    $response->getBody()->write($twig->render('for.twig',['title' => 'for', 'people' => $array]));
     return $response;
 });
 
